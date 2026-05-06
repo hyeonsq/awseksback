@@ -40,6 +40,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Docker Build & Push
+        id: build-image
         env:
           ECR: ${{ secrets.ECR_BACKEND_URI }}
           TAG: ${{ github.sha }}
@@ -47,9 +48,10 @@ jobs:
           docker build -t $ECR:$TAG -t $ECR:latest .
           docker push $ECR:$TAG
           docker push $ECR:latest
+          echo "image=$ECR:$TAG" >> $GITHUB_OUTPUT
 
       - name: Checkout Infra Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: hyeonsq/awseksinfra # 👈 사용자님의 인프라 저장소
           token: ${{ secrets.ARGOCD_GIT_TOKEN}}   # 인프라 저장소 푸시 권한이 있는 PAT
