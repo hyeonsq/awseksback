@@ -51,7 +51,7 @@ jobs:
       - name: Checkout Infra Repository
         uses: actions/checkout@v3
         with:
-          repository: https://github.com/hyeonsq/awseksinfra # 👈 사용자님의 인프라 저장소
+          repository: hyeonsq/awseksinfra # 👈 사용자님의 인프라 저장소
           token: ${{ secrets.ARGOCD_GIT_TOKEN}}   # 인프라 저장소 푸시 권한이 있는 PAT
           path: infra-repo 
       - name: Update Manifest
