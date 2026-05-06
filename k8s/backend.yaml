@@ -42,6 +42,7 @@ spec:
       containers:
         - name: backend
           image: 079000478222.dkr.ecr.us-east-1.amazonaws.com/sample-app/backend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
